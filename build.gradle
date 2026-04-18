@@ -15,7 +15,8 @@ dependencies {
     testImplementation(
             'org.junit.jupiter:junit-jupiter:5.10.1',
             'com.codeborne:selenide:7.10.1',
-            'org.slf4j:slf4j-simple:2.0.17'
+            'org.slf4j:slf4j-simple:2.0.17',
+            'net.datafaker:datafaker:2.5.4'
     )
 }
 

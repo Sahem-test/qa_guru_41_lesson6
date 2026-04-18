@@ -27,6 +27,21 @@ public class TextBoxTests extends TestBase {
                 .checkField("permanentAddress", permanentAddress);
     }
 
+
+    @Test
+    void successfulFillFormTestWithFaker() {
+        textBoxPage.openPage()
+                .typeUserName(userName)
+                .typeUserEmail(userEmail)
+                .typeCurrentAddress(currentAddress)
+                .typePermanentAddress(permanentAddress)
+                .submitForm()
+                .checkField("name", userName)
+                .checkField("email", userEmail)
+                .checkField("currentAddress", currentAddress)
+                .checkField("permanentAddress", permanentAddress);
+    }
+
     @Test
     void successfulFillFormWithoutAddressTest() {
         textBoxPage.openPage()
