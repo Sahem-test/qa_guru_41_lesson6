@@ -13,6 +13,7 @@ public class TestBase {
         Configuration.browser = "Edge";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
+
     }
 
     @AfterEach

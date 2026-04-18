@@ -18,11 +18,11 @@ public class PracticeFormPages {
     private final SelenideElement firstNameInput = $("#firstName");
     private final SelenideElement lastNameInput = $("#lastName");
     private final SelenideElement userEmailInput = $("#userEmail");
-    private final SelenideElement setGender = $("#gender-radio-1");
+    private final SelenideElement genderWrapper = $("#genterWrapper");
     private final SelenideElement userNumberInput = $("#userNumber");
     private final SelenideElement openCalendar = $("#dateOfBirthInput");
     private final SelenideElement subjectsInput = $("#subjectsInput");
-    private final SelenideElement setUserHobbies = $("#hobbies-checkbox-1");
+    private final SelenideElement setUserHobbies = $("#hobbiesWrapper");
     private final SelenideElement uploadPicture = $("#uploadPicture");
     private final SelenideElement currentAddressInput = $("#currentAddress");
     private final SelenideElement stateSelect = $("#state");
@@ -60,8 +60,8 @@ public class PracticeFormPages {
         return this;
     }
 
-    public PracticeFormPages setGender() {
-        setGender.click();
+    public PracticeFormPages setGender(String value) {
+        genderWrapper.$(byText((value))).click();
         return this;
     }
 
@@ -76,8 +76,9 @@ public class PracticeFormPages {
         return this;
     }
 
-    public PracticeFormPages setHobbies() {
-        setUserHobbies.click();
+
+    public PracticeFormPages setHobby(String value) {
+        setUserHobbies.$(byText(value)).click();
         return this;
     }
 
@@ -127,6 +128,11 @@ public class PracticeFormPages {
 
     public PracticeFormPages checkResult(String key, String value) {
         checkResultComponent.checkResult(key, value);
+        return this;
+    }
+
+    public PracticeFormPages checkDateOfBirth(String day, String month, String year) {
+        checkResultComponent.checkDateOfBirthResultComponent(day, month, year);
         return this;
     }
 

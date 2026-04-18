@@ -1,21 +1,39 @@
 package guru.qa.testData;
 
+import net.datafaker.Faker;
+
+import java.util.Locale;
+
 public class TestData {
-    public static String
-            userName = "Ivan",
-            lastName = "Ivanov",
-            userEmail = "test@gmail.com",
-            userNumber = "8985426455",
-            wrongNumber = "898542645",
-            wrongEmail = "testmail@",
-            day = "10",
-            month = "November",
-            year = "1976",
-            subjects = "Maths",
-            uploadPicture = "test.txt",
-            currentAddress = "test@gmail.com",
-            permanentAddress = "Moscow, st.Bratskaya",
-            state = "NCR",
-            city = "Delhi";
+    static Faker faker = new Faker(new Locale("ru", "Ru"));
+
+    public String
+            userName = faker.name().name(),
+            lastName = faker.name().lastName(),
+            userEmail = faker.internet().emailAddress(),
+            gender = faker.options().option("Male", "Female", "Other"),
+            userNumber = faker.phoneNumber().subscriberNumber(10),
+            wrongNumber = faker.phoneNumber().subscriberNumber(5),
+            day = String.format("%02d", faker.number().numberBetween(1, 29)),
+            month = faker.options().option("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
+            year = String.valueOf(faker.number().numberBetween(1976, 2010)),
+            subjects = faker.options().option("English", "Math", "Physics", "Chemistry", "Biology", "Computer Science", "Economics", "Arts", "History", "Civics"),
+            hobby = faker.options().option("Sports", "Reading", "Music"),
+            uploadPicture = faker.options().option("Picture1.png", "Picture2.png", "Picture3.png"),
+            currentAddress = faker.address().fullAddress(),
+            permanentAddress = faker.address().fullAddress(),
+            state = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan"),
+            city = selectCity(state);
+
+
+    public static String selectCity(String state) {
+        return switch (state) {
+            case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
+            case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
+            case "Haryana" -> faker.options().option("Karnal", "Panipat");
+            case "Rajasthan" -> faker.options().option("Jaipur", "Jaiselmer");
+            default -> null;
+        };
+    }
 
 }
