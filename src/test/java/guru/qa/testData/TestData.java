@@ -4,8 +4,10 @@ import net.datafaker.Faker;
 
 import java.util.Locale;
 
+import static utils.RandomUtilsWithFaker.selectCity;
+
 public class TestData {
-    static Faker faker = new Faker(new Locale("ru", "Ru"));
+     public static Faker faker = new Faker(new Locale("ru", "Ru"));
 
     public String
             userName = faker.name().name(),
@@ -24,16 +26,5 @@ public class TestData {
             permanentAddress = faker.address().fullAddress(),
             state = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan"),
             city = selectCity(state);
-
-
-    public static String selectCity(String state) {
-        return switch (state) {
-            case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
-            case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
-            case "Haryana" -> faker.options().option("Karnal", "Panipat");
-            case "Rajasthan" -> faker.options().option("Jaipur", "Jaiselmer");
-            default -> null;
-        };
-    }
 
 }

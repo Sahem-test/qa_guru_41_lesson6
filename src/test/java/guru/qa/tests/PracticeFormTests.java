@@ -54,7 +54,7 @@ public class PracticeFormTests extends TestBase {
                 .modalWindowShouldBeVisible()
                 .checkGreetingTextModalWindow()
                 .checkResult("Student Name", td.userName + " " + td.lastName)
-                .checkResult("Gender", "Male")
+                .checkResult("Gender", td.gender)
                 .checkResult("Mobile", td.userNumber);
     }
 
